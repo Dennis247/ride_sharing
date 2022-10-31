@@ -37,7 +37,9 @@ class AppButton extends StatelessWidget {
       elevation: isDisabled ? 0 : 5,
       shape: const StadiumBorder(),
       onPressed: () {
-        onTap();
+        if (!isDisabled) {
+          onTap();
+        }
       },
       child: isLoading
           ? Lottie.asset("assets/lottie/loader.json")

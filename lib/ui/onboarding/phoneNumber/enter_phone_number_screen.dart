@@ -1,6 +1,10 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:ride_sharing/core/models/country.dart';
 import 'package:ride_sharing/core/utils/colors.dart';
+import 'package:ride_sharing/core/utils/navigator.dart';
+import 'package:ride_sharing/ui/onboarding/otp/otp_verification_screen.dart';
 import 'package:ride_sharing/ui/onboarding/phoneNumber/enter_phone_number_viewmodel.dart';
 import 'package:ride_sharing/ui/onboarding/signUp/sign_up_viewmodel.dart';
 import 'package:ride_sharing/ui/widgets/appBar/app_bar.dart';
@@ -28,8 +32,6 @@ class _EnterPhoneNumberScreenState extends State<EnterPhoneNumberScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //  final country = context.read<SignUpViewModel>().selectedCountry;
-
     return Consumer<EnterPhoneNumberViewModel>(
       builder: (context, vm, child) => SafeArea(
         child: Scaffold(
@@ -49,6 +51,10 @@ class _EnterPhoneNumberScreenState extends State<EnterPhoneNumberScreen> {
                       CustomTextField(
                           lableText: "Phone number",
                           textEditingController: _controller,
+                          suffixIcon: SuffixWidget(suffixACtion: () {
+                            _controller.clear();
+                            vm.validatePhoneNumber(_controller.text);
+                          }),
                           onChanged: (text) {
                             vm.validatePhoneNumber(text);
                           },
@@ -62,10 +68,11 @@ class _EnterPhoneNumberScreenState extends State<EnterPhoneNumberScreen> {
           bottomNavigationBar: Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.0.w, vertical: 5.0.h),
             child: AppButton(
-              title: 'Continue',
-              onTap: () {},
-              isDisabled: !vm.isPhoneNumberValid,
-            ),
+                title: 'Continue',
+                isDisabled: !vm.isPhoneNumberValid,
+                onTap: () {
+                  AppNavigator.to(context, const OtpVerificationScreen());
+                }),
           ),
         ),
       ),

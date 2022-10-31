@@ -125,3 +125,25 @@ class CustomTextField extends StatelessWidget {
     );
   }
 }
+
+class SuffixWidget extends StatelessWidget {
+  final Function suffixACtion;
+  const SuffixWidget({super.key, required this.suffixACtion});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        suffixACtion();
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Icon(
+          Icons.close,
+          color: AppColors.grayDarker,
+          size: 2.5.h,
+        ),
+      ),
+    );
+  }
+}

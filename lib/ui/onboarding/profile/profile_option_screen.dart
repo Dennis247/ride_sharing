@@ -18,8 +18,8 @@ import 'package:provider/provider.dart';
 import 'package:functional_widget_annotation/functional_widget_annotation.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+class ProfileOptionScreen extends StatelessWidget {
+  const ProfileOptionScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class SignUpScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "Enter your number",
+                    "Set up your profile",
                     style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
@@ -46,29 +46,11 @@ class SignUpScreen extends StatelessWidget {
                   SizedBox(
                     height: 5.0.h,
                   ),
-                  GestureDetector(
-                    onTap: () => AppNavigator.to(
-                        context, const EnterPhoneNumberScreen()),
-                    child: Container(
-                        width: 100.0.w,
-                        height: 7.0.h,
-                        decoration: const BoxDecoration(
-                            color: AppColors.whiteShade,
-                            borderRadius: BorderRadius.all(Radius.circular(5))),
-                        child: Row(
-                          children: [
-                            const CountrIconWidget(),
-                            Consumer<EnterPhoneNumberViewModel>(
-                              builder: (context, phhnVm, child) => Text(
-                                phhnVm.phoneNumber,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 1.8.h),
-                              ),
-                            ),
-                          ],
-                        )),
-                  ),
+                  AppButton(
+                      title: "Continue with email",
+                      onTap: () {
+                        AppNavigator.to(context, const EnterEmailScreen());
+                      }),
                   SizedBox(
                     height: 2.5.h,
                   ),
@@ -102,37 +84,13 @@ class SignUpScreen extends StatelessWidget {
                   SizedBox(
                     height: 5.0.h,
                   ),
-
-                  // SizedBox(
-                  //   width: 100.0.w,
-                  //   height: 10.0.h,
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.center,
-                  //     children: [
-                  //       AppButton(
-                  //           title: "Goto",
-                  //           onTap: () {
-                  //             AppNavigator.to(
-                  //                 context,
-                  //                 CountryDialogueWidget(
-                  //                     sourceList: vm.countries,
-                  //                     title: "Select your country",
-                  //                     label: 'search for a country'));
-                  //           })
-                  //     ],
-                  //   ),
-                  // )
                 ],
               ),
             ),
           ),
         ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.all(30.0),
-          child: Text(
-            "By creating a new account, You have accepted our Terms & Conditions and Privacy policy.",
-            style: TextStyle(color: AppColors.grayDarker, fontSize: 1.5.h),
-          ),
+        bottomNavigationBar: const Padding(
+          padding: EdgeInsets.all(30.0),
         ),
       ),
     );

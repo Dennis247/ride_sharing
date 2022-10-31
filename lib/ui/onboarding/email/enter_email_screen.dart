@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:ride_sharing/core/utils/colors.dart';
+import 'package:ride_sharing/core/utils/navigator.dart';
 import 'package:ride_sharing/ui/onboarding/email/enter_email_viewmodel.dart';
+import 'package:ride_sharing/ui/onboarding/profile/enter_name_screen.dart';
 import 'package:ride_sharing/ui/widgets/appBar/app_bar.dart';
 import 'package:ride_sharing/ui/widgets/buttons/app_button.dart';
 import 'package:ride_sharing/ui/widgets/textInputs/app_input_widget.dart';
 import 'package:sizer/sizer.dart';
 import 'package:provider/provider.dart';
 
-class EnterEmailScreen extends StatelessWidget {
+class EnterEmailScreen extends StatefulWidget {
   const EnterEmailScreen({Key? key}) : super(key: key);
 
+  @override
+  State<EnterEmailScreen> createState() => _EnterEmailScreenState();
+}
+
+class _EnterEmailScreenState extends State<EnterEmailScreen> {
+  TextEditingController _textEditingController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Consumer<EnterEmailViewModel>(
@@ -20,7 +28,7 @@ class EnterEmailScreen extends StatelessWidget {
             child: Column(
               children: [
                 const AppBarWidget(
-                  title: "Enter your phone number",
+                  title: "Enter your email",
                 ),
                 Expanded(
                     child: Padding(
@@ -30,14 +38,19 @@ class EnterEmailScreen extends StatelessWidget {
                       SizedBox(height: 3.5.h),
                       CustomTextField(
                         lableText: "Email",
+                        textEditingController: _textEditingController,
                         onChanged: (text) {
                           vm.validateEmail(text);
                         },
+                        suffixIcon: SuffixWidget(suffixACtion: () {
+                          _textEditingController.clear();
+                          vm.validateEmail(_textEditingController.text);
+                        }),
                         prefixIcon: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 7),
                           child: Icon(
                             Icons.mail,
-                            color: AppColors.blackShade1,
+                            color: AppColors.primaryColor,
                             size: 13.sp,
                           ),
                         ),
@@ -53,7 +66,9 @@ class EnterEmailScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 5.0.w, vertical: 5.0.h),
             child: AppButton(
               title: 'Continue',
-              onTap: () {},
+              onTap: () {
+                AppNavigator.to(context, const EnterNameScreen());
+              },
               isDisabled: !vm.isEmailValid,
             ),
           ),

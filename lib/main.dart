@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:ride_sharing/core/models/address.dart';
 import 'package:ride_sharing/ui/home/home_screen.dart';
+import 'package:ride_sharing/ui/navigation/place_picker/place_picker_screen.dart';
+import 'package:ride_sharing/ui/navigation/saerch/search_location_screen.dart';
+import 'package:ride_sharing/ui/navigation/saerch/search_location_viewmodel.dart';
 import 'package:ride_sharing/ui/onboarding/email/enter_email_viewmodel.dart';
 import 'package:ride_sharing/ui/onboarding/phoneNumber/enter_phone_number_screen.dart';
 import 'package:ride_sharing/ui/onboarding/phoneNumber/enter_phone_number_viewmodel.dart';
+import 'package:ride_sharing/ui/onboarding/profile/enter_name_viewmodel.dart';
 import 'package:ride_sharing/ui/onboarding/signUp/sign_up_screen.dart';
 import 'package:ride_sharing/ui/onboarding/signUp/sign_up_viewmodel.dart';
 import 'package:ride_sharing/ui/widgets/dialogues/country_dialogue.dart';
@@ -13,6 +18,7 @@ import 'package:provider/provider.dart';
 
 import 'core/models/app_models.dart';
 import 'core/models/country.dart';
+import 'core/utils/constants.dart';
 import 'core/utils/theme.dart';
 
 void main() {
@@ -46,11 +52,13 @@ class _MyAppState extends State<MyApp> {
           ChangeNotifierProvider(create: (_) => EnterPhoneNumberViewModel()),
           ChangeNotifierProvider(create: (_) => EnterEmailViewModel()),
           ChangeNotifierProvider(create: (_) => CountrIconViewModel()),
+          ChangeNotifierProvider(create: (_) => EnterNameViewModel()),
+          ChangeNotifierProvider(create: (_) => SearchLocationViewModel()),
         ],
         child: MaterialApp(
             title: 'Ride Sharing',
             theme: AppTheme.theme,
-            home: const SignUpScreen()),
+            home: PlacePickerScreen()),
       );
     });
   }
