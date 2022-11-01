@@ -37,7 +37,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+    Constants.setMapStyle();
     AppModels.allCountries = CountryCode.getCountryLIst();
+
     super.initState();
   }
 

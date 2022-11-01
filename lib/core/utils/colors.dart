@@ -55,6 +55,6 @@ class AppColors {
   ]);
 
   // savings
-  static const kolosave = Color(0xff4BB814);
+  static const kolosave = Color.fromARGB(255, 40, 112, 4);
   static const targetSavings = Color(0xff8114B8);
 }

@@ -62,7 +62,10 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       //autofocus: true,
-      style: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 2.0.h),
+      style: Theme.of(context)
+          .textTheme
+          .bodyText1!
+          .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
       keyboardType: textInputType,
       obscureText: obscure,
       maxLength: inputLimit,

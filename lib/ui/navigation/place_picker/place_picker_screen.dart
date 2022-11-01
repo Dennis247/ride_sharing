@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ride_sharing/core/utils/colors.dart';
 
 //import 'package:google_maps_place_picker/google_maps_place_picker.dart';
 
@@ -29,11 +30,21 @@ class PlacePickerScreen extends StatelessWidget {
             height: 100.0.h,
             width: 100.0.w,
             child: PlacePicker(
-              usePlaceDetailSearch: false,
+              onAutoCompleteFailed: (value) {
+                print(value);
+              },
+              // pinBuilder: (context, state) {
+              //   return Container(
+              //     height: 30,
+              //     width: 30,
+              //     color: Colors.red,
+              //   );
+              // },
 
+              usePlaceDetailSearch: false,
               autocompleteLanguage: "en",
               automaticallyImplyAppBarLeading: false,
-              strictbounds: true,
+              strictbounds: false,
               onMapCreated: (controller) {
                 controller.setMapStyle(Constants.mapStyle);
               },
@@ -51,7 +62,10 @@ class PlacePickerScreen extends StatelessWidget {
                         height: 20.0.h,
                         borderRadius: BorderRadius.circular(10.0),
                         child: state == SearchingState.Searching
-                            ? const Center(child: CircularProgressIndicator())
+                            ? const Center(
+                                child: CircularProgressIndicator(
+                                color: AppColors.primaryColor,
+                              ))
                             : Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
@@ -79,7 +93,7 @@ class PlacePickerScreen extends StatelessWidget {
               },
               apiKey: Constants.apiKey,
               initialPosition: LatLng(
-                initialLocation!.latitude,
+                initialLocation.latitude,
                 initialLocation.longitude,
               ),
               useCurrentLocation: true,

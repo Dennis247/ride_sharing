@@ -11,30 +11,33 @@ class ConnectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: OfflineBuilder(
-          connectivityBuilder: (context, connectivity, child) {
-            final bool connected = connectivity != ConnectivityResult.none;
-            return Stack(
-              fit: StackFit.expand,
-              children: [
-                childWidget,
-                Positioned(
-                  height: 24.0,
-                  left: 0.0,
-                  right: 0.0,
-                  child: Container(
-                    color: connected ? Colors.green : const Color(0xFFEE4400),
-                    child: Center(
-                      child: Text(connected ? 'CONNECTED' : 'OFFLINE'),
-                    ),
-                  ),
-                ),
-              ],
-            );
-          },
-          child: Container()),
-      bottomNavigationBar: bottomNavigator,
+    return SafeArea(
+      child: Scaffold(
+        body: OfflineBuilder(
+            connectivityBuilder: (context, connectivity, child) {
+              final bool connected = connectivity != ConnectivityResult.none;
+              return Stack(
+                fit: StackFit.expand,
+                children: [
+                  childWidget,
+
+                  // Positioned(
+                  //   height: 24.0,
+                  //   left: 0.0,
+                  //   right: 0.0,
+                  //   child: Container(
+                  //     color: connected ? Colors.green : const Color(0xFFEE4400),
+                  //     child: Center(
+                  //       child: Text(connected ? 'CONNECTED' : 'OFFLINE'),
+                  //     ),
+                  //   ),
+                  // ),
+                ],
+              );
+            },
+            child: Container()),
+        bottomNavigationBar: bottomNavigator,
+      ),
     );
   }
 }

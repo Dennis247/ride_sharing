@@ -2,7 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:ride_sharing/core/models/address.dart';
 
 class Constants {
-  static String apiKey = "AIzaSyCWNdYldigVkhZIVkNlkokjO4VVJ8YKPTo";
+  static String apiKey = "AIzaSyCyEmNAa9Zt0wmSMohBs4zQ1aMd8XCIG8s";
 
   static String placeUrl =
       "https://maps.googleapis.com/maps/api/place/autocomplete/json";
