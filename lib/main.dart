@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ride_sharing/core/models/address.dart';
 import 'package:ride_sharing/ui/home/home_screen.dart';
 import 'package:ride_sharing/ui/navigation/place_picker/place_picker_screen.dart';
+import 'package:ride_sharing/ui/navigation/place_picker/place_picker_viewmodel.dart';
+import 'package:ride_sharing/ui/navigation/route/route_screen.dart';
+import 'package:ride_sharing/ui/navigation/route/route_viewmodel.dart';
 import 'package:ride_sharing/ui/navigation/saerch/search_location_screen.dart';
 import 'package:ride_sharing/ui/navigation/saerch/search_location_viewmodel.dart';
 import 'package:ride_sharing/ui/onboarding/email/enter_email_viewmodel.dart';
@@ -56,11 +59,16 @@ class _MyAppState extends State<MyApp> {
           ChangeNotifierProvider(create: (_) => CountrIconViewModel()),
           ChangeNotifierProvider(create: (_) => EnterNameViewModel()),
           ChangeNotifierProvider(create: (_) => SearchLocationViewModel()),
+          ChangeNotifierProvider(create: (_) => PlacePickerViewModel()),
+          ChangeNotifierProvider(create: (_) => RouteViewModel()),
         ],
         child: MaterialApp(
             title: 'Ride Sharing',
             theme: AppTheme.theme,
-            home: PlacePickerScreen()),
+            home: RouteScreen(
+              myDestinationPlaceId: Constants.endPlaceId,
+              myLocationPlaceId: Constants.startPlaceId,
+            )),
       );
     });
   }

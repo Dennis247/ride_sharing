@@ -30,7 +30,7 @@ class MapServices {
   //       isSucessfull: false, message: 'failed to get Address', data: '');
   // }
 
-  double getMarkerRotation(mtk.LatLng soure, mtk.LatLng detsination) {
+  static double getMarkerRotation(mtk.LatLng soure, mtk.LatLng detsination) {
     var rotation = mtk.SphericalUtil.computeHeading(soure, detsination);
     return rotation.toDouble();
   }
@@ -104,7 +104,7 @@ class MapServices {
     return totlaFare.truncate();
   }
 
-  Future<BaseResponse> getDirectionDetails(
+  static Future<BaseResponse> getDirectionDetails(
       LatLng startPosition, LatLng endPosition) async {
     try {
       String url =

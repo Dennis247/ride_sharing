@@ -20,4 +20,7 @@ class Constants {
       placeFormattedAddress: "Lagos",
       placeId: "",
       placeName: "Lagos");
+
+  static String startPlaceId = "ChIJ6WGmt9GNOxART3ZQNfVMdQs";
+  static String endPlaceId = "ChIJJeCgOuWNOxARjaZlplRs7nE";
 }

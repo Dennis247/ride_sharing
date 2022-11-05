@@ -60,6 +60,8 @@ dev_dependencies:
   maps_toolkit: ^2.0.1
   google_maps_place_picker_mb: ^2.0.0-mb.22
   flutter_offline: ^2.1.0
+  flutter_polyline_points: ^1.0.0
+
 
   
 

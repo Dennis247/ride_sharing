@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:ride_sharing/core/utils/colors.dart';
 
@@ -100,7 +102,9 @@ class PlacePickerScreen extends StatelessWidget {
               selectInitialPosition: true,
 
               //usePlaceDetailSearch: true,
-              onPlacePicked: (PickResult result) {},
+              onPlacePicked: (PickResult result) {
+                log(result.placeId!);
+              },
             ),
           ),
         ],
